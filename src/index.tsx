@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'redux/example/store';
-import 'styles/index.css';
 import 'modern-normalize/modern-normalize.css';
+import 'styles/index.css';
 import App from 'components/App';
 
 const root = ReactDOM.createRoot(
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="contacts">
         <App />
       </BrowserRouter>
     </Provider>
