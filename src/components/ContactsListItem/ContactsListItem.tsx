@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IItem {
   name: string;
   number: string;
