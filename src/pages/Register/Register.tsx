@@ -6,7 +6,7 @@ const Register: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   if (isLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/contacts" replace />;
   }
 
   return (

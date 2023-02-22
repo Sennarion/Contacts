@@ -31,9 +31,9 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="name" onChange={onChange} />
-      <input type="email" name="email" onChange={onChange} />
-      <input type="password" name="password" onChange={onChange} />
+      <input type="text" name="name" onChange={onChange} required />
+      <input type="email" name="email" onChange={onChange} required />
+      <input type="password" name="password" onChange={onChange} required />
       <button type="submit">Register</button>
     </form>
   );

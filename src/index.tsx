@@ -16,7 +16,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="contacts">
+        <BrowserRouter basename="contacthub">
           <App />
         </BrowserRouter>
       </PersistGate>

@@ -2,19 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { register, login, logout, refreshUser } from './operations';
-
-interface IUser {
-  name: null | string;
-  email: null | string;
-}
-
-interface AuthState {
-  user: IUser;
-  token: null | string;
-  isLoggedIn: boolean;
-  isRefreshing: boolean;
-  error: unknown;
-}
+import { AuthState } from 'types/types';
 
 const initialState: AuthState = {
   user: { name: null, email: null },

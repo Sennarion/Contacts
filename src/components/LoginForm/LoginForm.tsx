@@ -26,12 +26,19 @@ const LoginForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="email" name="email" value={user.email} onChange={onChange} />
+      <input
+        type="email"
+        name="email"
+        value={user.email}
+        onChange={onChange}
+        required
+      />
       <input
         type="password"
         name="password"
         value={user.password}
         onChange={onChange}
+        required
       />
       <button type="submit">Login</button>
     </form>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IContact, INewContact } from 'types/types';
 
 export const getContacts = createAsyncThunk(
   'contacts/getContacts',
@@ -15,7 +16,7 @@ export const getContacts = createAsyncThunk(
 
 export const createContact = createAsyncThunk(
   'contacts/createContact',
-  async (newContact, { rejectWithValue }) => {
+  async (newContact: INewContact, { rejectWithValue }) => {
     try {
       const res = await axios.post('/contacts', newContact);
       return res.data;
@@ -27,9 +28,21 @@ export const createContact = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (contactId, { rejectWithValue }) => {
+  async (contactId: string, { rejectWithValue }) => {
     try {
       const res = await axios.delete(`/contacts/${contactId}`);
+      return res.data;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ id, name, number }: IContact, { rejectWithValue }) => {
+    try {
+      const res = await axios.patch(`/contacts/${id}`, { name, number });
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.message);
