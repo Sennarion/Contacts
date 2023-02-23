@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { register } from 'redux/auth/operations';
 import { IRegisterCredentials } from 'types/types';
-import { Button, TextField, Grid } from '@mui/material';
+import { Button, TextField, Stack } from '@mui/material';
 
 const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,24 +22,17 @@ const RegisterForm: React.FC = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(register(user));
-    e.currentTarget.reset();
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Stack spacing={2} minWidth="350px">
         <TextField
           type="text"
           name="name"
           label="User Name"
           variant="outlined"
           size="small"
-          margin="normal"
           fullWidth
           value={user.name}
           onChange={onChange}
@@ -51,7 +44,6 @@ const RegisterForm: React.FC = () => {
           label="Email Address"
           variant="outlined"
           size="small"
-          margin="normal"
           fullWidth
           value={user.email}
           onChange={onChange}
@@ -63,17 +55,15 @@ const RegisterForm: React.FC = () => {
           label="Password"
           variant="outlined"
           size="small"
-          margin="normal"
           fullWidth
           value={user.password}
           onChange={onChange}
           required
         />
-
         <Button type="submit" variant="contained" color="primary" fullWidth>
           Sign up
         </Button>
-      </Grid>
+      </Stack>
     </form>
   );
 };

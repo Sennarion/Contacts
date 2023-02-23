@@ -2,8 +2,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography, Avatar, Container } from '@mui/material';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { Link, Typography, Box, Stack } from '@mui/material';
+import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
 
 const Register: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
@@ -13,21 +13,37 @@ const Register: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="xs">
-      <Avatar>
-        <AccountCircleRoundedIcon fontSize="large" color="primary" />
-      </Avatar>
-      <Typography component="h1" variant="h5">
-        Sign Up
-      </Typography>
-      <RegisterForm />
-      <Typography align="center">
-        Already have an account?
-        <Link component={RouterLink} to="/login">
-          Sign In
-        </Link>
-      </Typography>
-    </Container>
+    <Box
+      minHeight="100vh"
+      minWidth="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      bgcolor="#91b7f2"
+    >
+      <Stack padding={4} bgcolor="#fff" borderRadius={4} spacing={2}>
+        <Stack spacing={2} alignItems="center">
+          <PersonAddRoundedIcon
+            color="primary"
+            sx={{ width: '80px', height: '80px' }}
+          />
+          <Typography component="h1" variant="h5">
+            Sign Up
+          </Typography>
+        </Stack>
+        <Stack spacing={2}>
+          <RegisterForm />
+          <Typography align="center">
+            <Typography component="span" mr={1}>
+              Already have an account?
+            </Typography>
+            <Link component={RouterLink} to="/login">
+              Sign In
+            </Link>
+          </Typography>
+        </Stack>
+      </Stack>
+    </Box>
   );
 };
 

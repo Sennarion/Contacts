@@ -2,8 +2,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks';
 import LoginForm from 'components/LoginForm/LoginForm';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography, Container, Avatar } from '@mui/material';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { Link, Typography, Box, Stack } from '@mui/material';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
 const Login: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
@@ -13,21 +13,37 @@ const Login: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="xs">
-      <Avatar>
-        <AccountCircleRoundedIcon fontSize="large" color="primary" />
-      </Avatar>
-      <Typography component="h1" variant="h5">
-        Sign In
-      </Typography>
-      <LoginForm />
-      <Typography align="center">
-        Don't have an account?
-        <Link component={RouterLink} to="/register">
-          Sign Up
-        </Link>
-      </Typography>
-    </Container>
+    <Box
+      minHeight="100vh"
+      minWidth="100%"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      bgcolor="#91b7f2"
+    >
+      <Stack p={4} bgcolor="#fff" borderRadius={4} spacing={2}>
+        <Stack spacing={2} alignItems="center">
+          <PersonRoundedIcon
+            color="primary"
+            sx={{ width: '80px', height: '80px' }}
+          />
+          <Typography component="h1" variant="h5">
+            Sign In
+          </Typography>
+        </Stack>
+        <Stack spacing={2}>
+          <LoginForm />
+          <Typography align="center">
+            <Typography component="span" mr={1}>
+              Don't have an account?
+            </Typography>
+            <Link component={RouterLink} to="/register">
+              Sign Up
+            </Link>
+          </Typography>
+        </Stack>
+      </Stack>
+    </Box>
   );
 };
 

@@ -14,6 +14,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Popup = styled.div`
-  padding: 20px;
+  padding: 60px;
   background-color: white;
+  border-radius: 10px;
 `;

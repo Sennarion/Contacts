@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { login } from 'redux/auth/operations';
 import { ILoginCredentials } from 'types/types';
-import { Grid, Button, TextField } from '@mui/material';
+import { Button, TextField, Stack } from '@mui/material';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,48 +21,38 @@ const LoginForm: React.FC = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(login(user));
-    e.currentTarget.reset();
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <TextField
-            type="email"
-            name="email"
-            label="Email Address"
-            variant="outlined"
-            size="small"
-            margin="normal"
-            fullWidth
-            value={user.email}
-            onChange={onChange}
-            required
-          />
-          <TextField
-            type="password"
-            name="password"
-            label="Password"
-            variant="outlined"
-            size="small"
-            margin="normal"
-            fullWidth
-            value={user.password}
-            onChange={onChange}
-            required
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Sign in
-          </Button>
-        </Grid>
-      </form>
-    </>
+    <form onSubmit={onSubmit}>
+      <Stack spacing={2} minWidth="350px">
+        <TextField
+          type="email"
+          name="email"
+          label="Email Address"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={user.email}
+          onChange={onChange}
+          required
+        />
+        <TextField
+          type="password"
+          name="password"
+          label="Password"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={user.password}
+          onChange={onChange}
+          required
+        />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Sign in
+        </Button>
+      </Stack>
+    </form>
   );
 };
 

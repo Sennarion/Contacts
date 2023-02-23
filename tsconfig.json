@@ -23,7 +23,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "types": [
+      "@types/node",
+      "@types/react",
+      "@types/react-dom",
+      "@types/babel__generator"
+    ]
   },
   "include": [
     "src"

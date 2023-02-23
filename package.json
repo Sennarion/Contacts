@@ -54,7 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/redux-persist": "^4.3.1",
-    "@types/styled-components": "^5.1.26"
+    "@types/babel__generator": "^7.6.4",
+    "@types/redux-persist": "^4.3.1"
   }
 }

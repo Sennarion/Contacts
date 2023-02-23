@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { updateContact } from 'redux/contacts/operations';
 import { toggleUpdateContactModal } from 'redux/global/slice';
 import { IContact } from 'types/types';
-import { Button, TextField, Grid } from '@mui/material';
+import { Button, TextField, Stack, Typography } from '@mui/material';
 
 const UpdateContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -41,19 +41,16 @@ const UpdateContactForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Stack spacing={2} minWidth="350px">
+        <Typography component="h2" variant="h5" align="center" mb={2}>
+          Update contact
+        </Typography>
         <TextField
           type="text"
           name="name"
           label="Change Name"
           variant="outlined"
           size="small"
-          margin="normal"
           fullWidth
           value={updatedContact.name}
           onChange={onChange}
@@ -62,15 +59,17 @@ const UpdateContactForm: React.FC = () => {
         <TextField
           type="tel"
           name="number"
-          label="Change Name"
+          label="Change Number"
           variant="outlined"
           size="small"
-          margin="normal"
           fullWidth
           value={updatedContact.number}
           onChange={onChange}
           required
         />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Change
+        </Button>
         <Button
           type="button"
           variant="outlined"
@@ -79,10 +78,7 @@ const UpdateContactForm: React.FC = () => {
         >
           Cancel
         </Button>
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Change
-        </Button>
-      </Grid>
+      </Stack>
     </form>
   );
 };

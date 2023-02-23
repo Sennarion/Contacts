@@ -1,5 +1,6 @@
 import { useAppSelector } from 'hooks';
 import ContactsListItem from 'components/ContactsListItem/ContactsListItem';
+import { Grid, Box } from '@mui/material';
 
 const ContactsList: React.FC = () => {
   const contacts = useAppSelector(state => state.contacts.items);
@@ -13,13 +14,15 @@ const ContactsList: React.FC = () => {
   );
 
   return (
-    <ul>
-      {filteredContacts.map(({ id, name, number }) => {
-        return (
-          <ContactsListItem key={id} id={id} name={name} number={number} />
-        );
-      })}
-    </ul>
+    <Box component="main">
+      <Grid container component="ul" spacing={4}>
+        {filteredContacts.map(({ id, name, number }) => {
+          return (
+            <ContactsListItem key={id} id={id} name={name} number={number} />
+          );
+        })}
+      </Grid>
+    </Box>
   );
 };
 
