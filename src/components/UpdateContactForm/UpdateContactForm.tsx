@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { updateContact } from 'redux/contacts/operations';
 import { toggleUpdateContactModal } from 'redux/global/slice';
 import { IContact } from 'types/types';
-import { Button, TextField, Grid } from '@material-ui/core';
+import { Button, TextField, Grid } from '@mui/material';
 
 const UpdateContactForm: React.FC = () => {
   const dispatch = useAppDispatch();

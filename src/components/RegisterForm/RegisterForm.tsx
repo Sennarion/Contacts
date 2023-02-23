@@ -1,18 +1,13 @@
 import { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { register } from 'redux/auth/operations';
-import { Button, TextField, Grid } from '@material-ui/core';
+import { IRegisterCredentials } from 'types/types';
+import { Button, TextField, Grid } from '@mui/material';
 
 const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  interface IUser {
-    name: string;
-    email: string;
-    password: string;
-  }
-
-  const [user, setUser] = useState<IUser>({
+  const [user, setUser] = useState<IRegisterCredentials>({
     name: '',
     email: '',
     password: '',

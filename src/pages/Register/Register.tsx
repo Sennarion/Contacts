@@ -2,8 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
-import { Typography, Avatar, Container } from '@material-ui/core';
+import { Link, Typography, Avatar, Container } from '@mui/material';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 const Register: React.FC = () => {

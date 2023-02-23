@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { login } from 'redux/auth/operations';
-import { Grid, Button, TextField } from '@material-ui/core';
+import { ILoginCredentials } from 'types/types';
+import { Grid, Button, TextField } from '@mui/material';
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  interface IUser {
-    email: string;
-    password: string;
-  }
-
-  const [user, setUser] = useState<IUser>({ email: '', password: '' });
+  const [user, setUser] = useState<ILoginCredentials>({
+    email: '',
+    password: '',
+  });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser(prev => {

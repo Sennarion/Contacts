@@ -12,7 +12,7 @@ import {
   toggleAddContactModal,
   toggleUpdateContactModal,
 } from 'redux/global/slice';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();

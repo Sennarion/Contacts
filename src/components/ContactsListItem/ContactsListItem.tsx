@@ -3,7 +3,7 @@ import { deleteContact } from 'redux/contacts/operations';
 import { setContactToUpdate } from 'redux/contacts/slice';
 import { toggleUpdateContactModal } from 'redux/global/slice';
 import { IContact } from 'types/types';
-import { Button, ButtonGroup, Typography } from '@material-ui/core';
+import { Button, ButtonGroup, Typography } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 

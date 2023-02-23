@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { createContact } from 'redux/contacts/operations';
 import { toggleAddContactModal } from 'redux/global/slice';
 import { INewContact } from 'types/types';
-import { Button, TextField, Grid } from '@material-ui/core';
+import { Button, TextField, Grid } from '@mui/material';
 
 const AddContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
