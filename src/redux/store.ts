@@ -8,11 +8,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { globalReducer } from './global/slice';
 import { authReducer } from './auth/slice';
 import { contactsReducer } from './contacts/slice';
 
 export const store = configureStore({
   reducer: {
+    global: globalReducer,
     auth: authReducer,
     contacts: contactsReducer,
   },

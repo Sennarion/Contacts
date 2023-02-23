@@ -8,6 +8,11 @@ import AddContactForm from 'components/AddContactForm/AddContactForm';
 import ContactsList from 'components/ContactsList/ContactsList';
 import UpdateContactForm from 'components/UpdateContactForm/UpdateContactForm';
 import Modal from 'components/Modal/Modal';
+import {
+  toggleAddContactModal,
+  toggleUpdateContactModal,
+} from 'redux/global/slice';
+import { Container } from '@material-ui/core';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +22,12 @@ const Home: React.FC = () => {
   }, [dispatch]);
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const isAddContactModalOpen = useAppSelector(
+    state => state.global.isAddContactModalOpen
+  );
+  const isUpdateContactModalOpen = useAppSelector(
+    state => state.global.isUpdateContactModalOpen
+  );
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
@@ -25,16 +36,20 @@ const Home: React.FC = () => {
   return (
     <div>
       <Header />
-      Filter
-      <Filter />
-      <Modal>
-        <AddContactForm />
-      </Modal>
-      <Modal>
-        <UpdateContactForm />
-      </Modal>
-      Contacts list
-      <ContactsList />
+      <Container>
+        <Filter />
+        {isAddContactModalOpen && (
+          <Modal onClose={() => dispatch(toggleAddContactModal())}>
+            <AddContactForm />
+          </Modal>
+        )}
+        {isUpdateContactModalOpen && (
+          <Modal onClose={() => dispatch(toggleUpdateContactModal())}>
+            <UpdateContactForm />
+          </Modal>
+        )}
+        <ContactsList />
+      </Container>
     </div>
   );
 };

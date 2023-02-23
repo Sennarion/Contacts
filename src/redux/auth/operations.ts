@@ -1,17 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from 'redux/store';
-
-interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-interface RegisterCredentials {
-  name: string;
-  email: string;
-  password: string;
-}
+import { ILoginCredentials, IRegisterCredentials } from 'types/types';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -26,7 +16,7 @@ const token = {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (credentials: RegisterCredentials, { rejectWithValue }) => {
+  async (credentials: IRegisterCredentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
@@ -39,7 +29,7 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (credentials: LoginCredentials, { rejectWithValue }) => {
+  async (credentials: ILoginCredentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);

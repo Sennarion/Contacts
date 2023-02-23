@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from 'hooks';
 import { register } from 'redux/auth/operations';
+import { Button, TextField, Grid } from '@material-ui/core';
 
 const RegisterForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -31,10 +32,53 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="name" onChange={onChange} required />
-      <input type="email" name="email" onChange={onChange} required />
-      <input type="password" name="password" onChange={onChange} required />
-      <button type="submit">Register</button>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <TextField
+          type="text"
+          name="name"
+          label="User Name"
+          variant="outlined"
+          size="small"
+          margin="normal"
+          fullWidth
+          value={user.name}
+          onChange={onChange}
+          required
+        />
+        <TextField
+          type="email"
+          name="email"
+          label="Email Address"
+          variant="outlined"
+          size="small"
+          margin="normal"
+          fullWidth
+          value={user.email}
+          onChange={onChange}
+          required
+        />
+        <TextField
+          type="password"
+          name="password"
+          label="Password"
+          variant="outlined"
+          size="small"
+          margin="normal"
+          fullWidth
+          value={user.password}
+          onChange={onChange}
+          required
+        />
+
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Sign up
+        </Button>
+      </Grid>
     </form>
   );
 };

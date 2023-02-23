@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'redux/store';
-import 'modern-normalize/modern-normalize.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import 'styles/index.css';
 import App from 'components/App';
 
@@ -17,7 +17,9 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="contacthub">
-          <App />
+          <CssBaseline>
+            <App />
+          </CssBaseline>
         </BrowserRouter>
       </PersistGate>
     </Provider>

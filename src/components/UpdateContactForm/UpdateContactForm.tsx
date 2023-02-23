@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { updateContact } from 'redux/contacts/operations';
-import { setContactToUpdate } from 'redux/contacts/slice';
+import { toggleUpdateContactModal } from 'redux/global/slice';
+import { IContact } from 'types/types';
+import { Button, TextField, Grid } from '@material-ui/core';
 
 const UpdateContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -10,30 +13,26 @@ const UpdateContactForm: React.FC = () => {
     state => state.contacts.contactToUpdate
   );
 
+  const [updatedContact, setUpdatedContact] =
+    useState<IContact>(contactToUpdate);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(
-      setContactToUpdate({
-        ...contactToUpdate,
-        [e.target.name]: e.target.value,
-      })
-    );
+    setUpdatedContact({
+      ...updatedContact,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (
-      contacts.some(prevContact => prevContact.name === contactToUpdate?.name)
-    ) {
+
+    if (contacts.some(contact => contact.name === updatedContact.name)) {
       alert('Error');
       return;
     }
 
-    if (contactToUpdate) {
-      const { id, name, number } = contactToUpdate;
-      dispatch(updateContact({ id, name, number }));
-    }
-
-    e.currentTarget.reset();
+    dispatch(updateContact(updatedContact));
+    dispatch(toggleUpdateContactModal());
   };
 
   if (!contactToUpdate) {
@@ -42,21 +41,48 @@ const UpdateContactForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={contactToUpdate.name}
-        onChange={onChange}
-        required
-      />
-      <input
-        type="tel"
-        name="number"
-        value={contactToUpdate.number}
-        onChange={onChange}
-        required
-      />
-      <button type="submit">Change</button>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <TextField
+          type="text"
+          name="name"
+          label="Change Name"
+          variant="outlined"
+          size="small"
+          margin="normal"
+          fullWidth
+          value={updatedContact.name}
+          onChange={onChange}
+          required
+        />
+        <TextField
+          type="tel"
+          name="number"
+          label="Change Name"
+          variant="outlined"
+          size="small"
+          margin="normal"
+          fullWidth
+          value={updatedContact.number}
+          onChange={onChange}
+          required
+        />
+        <Button
+          type="button"
+          variant="outlined"
+          fullWidth
+          onClick={() => dispatch(toggleUpdateContactModal())}
+        >
+          Cancel
+        </Button>
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Change
+        </Button>
+      </Grid>
     </form>
   );
 };

@@ -1,6 +1,10 @@
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks';
 import LoginForm from 'components/LoginForm/LoginForm';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+import { Typography, Container, Avatar } from '@material-ui/core';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 const Login: React.FC = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
@@ -10,10 +14,21 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div>
-      Login
+    <Container maxWidth="xs">
+      <Avatar>
+        <AccountCircleRoundedIcon fontSize="large" color="primary" />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign In
+      </Typography>
       <LoginForm />
-    </div>
+      <Typography align="center">
+        Don't have an account?
+        <Link component={RouterLink} to="/register">
+          Sign Up
+        </Link>
+      </Typography>
+    </Container>
   );
 };
 

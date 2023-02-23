@@ -3,14 +3,15 @@ import { createPortal } from 'react-dom';
 import { Backdrop, Popup } from './Modal.styled';
 
 type ModalProps = {
+  onClose: () => void;
   children: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
   useEffect(() => {
     const onPressEsc = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {
-        alert();
+        onClose();
       }
     };
 
@@ -19,11 +20,11 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
     return () => {
       window.removeEventListener('keydown', onPressEsc);
     };
-  }, []);
+  }, [onClose]);
 
   const onBackdropClick = (e: SyntheticEvent) => {
     if (e.target === e.currentTarget) {
-      alert();
+      onClose();
     }
   };
 

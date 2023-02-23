@@ -12,7 +12,11 @@ const initialState: ContactsState = {
   isLoading: false,
   error: null,
   filter: '',
-  contactToUpdate: null,
+  contactToUpdate: {
+    id: '',
+    name: '',
+    number: '',
+  },
 };
 
 const contactsSlice = createSlice({
@@ -42,7 +46,11 @@ const contactsSlice = createSlice({
           contact => contact.id === payload.id
         );
         state.items.splice(contactIdx, 1, payload);
-        state.contactToUpdate = null;
+        state.contactToUpdate = {
+          id: '',
+          name: '',
+          number: '',
+        };
       })
       .addMatcher(
         isAnyOf(
