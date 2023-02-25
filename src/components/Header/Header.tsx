@@ -1,9 +1,7 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { logout } from 'redux/auth/operations';
-import { toggleAddContactModal } from 'redux/global/slice';
 import { Button, Typography, Container, Box, Stack } from '@mui/material';
 import Filter from 'components/Filter/Filter';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 
@@ -27,17 +25,6 @@ const Header: React.FC = () => {
             </Typography>
           </Stack>
           <Filter />
-          <Box position="absolute" bottom="40px" right="40px">
-            <Button
-              type="button"
-              variant="contained"
-              color="primary"
-              startIcon={<AddCircleRoundedIcon />}
-              onClick={() => dispatch(toggleAddContactModal())}
-            >
-              Add contact
-            </Button>
-          </Box>
           <Stack direction="row" alignItems="center" spacing={2}>
             <Typography>{user.name}</Typography>
             <Button

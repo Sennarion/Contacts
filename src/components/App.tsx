@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { refreshUser } from 'redux/auth/operations';
+import Loader from './Loader/Loader';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));
@@ -18,9 +19,9 @@ const App: React.FC = () => {
   return (
     <>
       {isRefreshing ? (
-        <p>LOADING...</p>
+        <Loader />
       ) : (
-        <Suspense fallback={<p>LOADING...</p>}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/contacts" element={<Home />} />
             <Route path="/login" element={<Login />} />
