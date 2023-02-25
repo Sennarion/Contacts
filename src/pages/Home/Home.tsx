@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { getContacts } from 'redux/contacts/operations';
@@ -6,16 +6,14 @@ import Header from 'components/Header/Header';
 import AddContactForm from 'components/AddContactForm/AddContactForm';
 import ContactsList from 'components/ContactsList/ContactsList';
 import UpdateContactForm from 'components/UpdateContactForm/UpdateContactForm';
+import {
+  toggleAddContactModal,
+  toggleUpdateContactModal,
+} from 'redux/global/slice';
 import { Container, Box, Dialog, Button } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import { IContact } from 'types/types';
 
 const Home: React.FC = () => {
-  const [isAddContactModalOpen, setIsAddContactModalOpen] = useState(false);
-  const [isUpdateContactModalOpen, setIsUpdateContactModalOpen] =
-    useState(false);
-  const [contactToUpdate, setContactToUpdate] = useState<IContact>();
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -23,6 +21,12 @@ const Home: React.FC = () => {
   }, [dispatch]);
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const isAddContactModalOpen = useAppSelector(
+    state => state.global.isAddContactModalOpen
+  );
+  const isUpdateContactModalOpen = useAppSelector(
+    state => state.global.isUpdateContactModalOpen
+  );
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
@@ -35,13 +39,13 @@ const Home: React.FC = () => {
         <Container>
           <Dialog
             open={isAddContactModalOpen}
-            onClose={() => setIsAddContactModalOpen(false)}
+            onClose={() => dispatch(toggleAddContactModal())}
           >
             <AddContactForm />
           </Dialog>
           <Dialog
             open={isUpdateContactModalOpen}
-            onClose={() => setIsUpdateContactModalOpen(false)}
+            onClose={() => dispatch(toggleUpdateContactModal())}
           >
             <UpdateContactForm />
           </Dialog>
@@ -52,7 +56,7 @@ const Home: React.FC = () => {
               variant="contained"
               color="primary"
               startIcon={<AddCircleRoundedIcon />}
-              onClick={() => setIsAddContactModalOpen(true)}
+              onClick={() => dispatch(toggleAddContactModal())}
             >
               Add contact
             </Button>

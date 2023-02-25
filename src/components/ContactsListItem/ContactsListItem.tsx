@@ -1,4 +1,4 @@
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { deleteContact } from 'redux/contacts/operations';
 import { setContactToUpdate } from 'redux/contacts/slice';
 import { toggleUpdateContactModal } from 'redux/global/slice';
@@ -18,13 +18,15 @@ import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
 const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
   const dispatch = useAppDispatch();
 
+  const isLoading = useAppSelector(state => state.contacts.isLoading);
+
   const onUpdateBtnClick = () => {
     dispatch(setContactToUpdate({ id, name, number }));
     dispatch(toggleUpdateContactModal());
   };
 
   return (
-    <Grid item component="li" xs={12} sm={4}>
+    <Grid item component="li" xs={12} sm={6} md={4} lg={3}>
       <Card variant="outlined">
         <CardContent>
           <Typography>Name: {name}</Typography>
@@ -44,6 +46,7 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
             <Button
               type="button"
               variant="outlined"
+              disabled={isLoading}
               startIcon={<DeleteRoundedIcon />}
               onClick={() => dispatch(deleteContact(id))}
             >

@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         >
           <Stack direction="row" alignItems="center" spacing={2}>
             <RecentActorsIcon fontSize="large" />
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h6">
               ContactsHub
             </Typography>
           </Stack>

@@ -21,7 +21,7 @@ const Register: React.FC = () => {
       alignItems="center"
       bgcolor="#91b7f2"
     >
-      <Stack padding={4} bgcolor="#fff" borderRadius={4} spacing={2}>
+      <Stack padding={4} bgcolor="#fff" borderRadius={2} spacing={2}>
         <Stack spacing={2} alignItems="center">
           <PersonAddRoundedIcon
             color="primary"

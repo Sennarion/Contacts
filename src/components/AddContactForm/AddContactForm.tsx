@@ -9,6 +9,7 @@ const AddContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const contacts = useAppSelector(state => state.contacts.items);
+  const isLoading = useAppSelector(state => state.contacts.isLoading);
 
   const [contact, setContact] = useState<INewContact>({
     name: '',
@@ -36,7 +37,7 @@ const AddContactForm: React.FC = () => {
   return (
     <Box p={6}>
       <Typography component="h2" variant="h5" align="center" mb={2}>
-        Update contact
+        Add new contact
       </Typography>
       <form onSubmit={onSubmit}>
         <Stack spacing={2} minWidth="350px">
@@ -63,7 +64,13 @@ const AddContactForm: React.FC = () => {
             onChange={onChange}
             required
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={isLoading}
+          >
             Create
           </Button>
           <Button

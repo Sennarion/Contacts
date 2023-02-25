@@ -12,6 +12,7 @@ const UpdateContactForm: React.FC = () => {
   const contactToUpdate = useAppSelector(
     state => state.contacts.contactToUpdate
   );
+  const isLoading = useAppSelector(state => state.contacts.isLoading);
 
   const [updatedContact, setUpdatedContact] =
     useState<IContact>(contactToUpdate);
@@ -65,7 +66,13 @@ const UpdateContactForm: React.FC = () => {
             onChange={onChange}
             required
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            disabled={isLoading}
+          >
             Change
           </Button>
           <Button
