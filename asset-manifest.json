@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/contacthub/static/css/main.30578a51.css",
+    "main.js": "/contacthub/static/js/main.4173b7df.js",
+    "static/js/886.e15f6429.chunk.js": "/contacthub/static/js/886.e15f6429.chunk.js",
+    "static/js/923.e2a1c7a7.chunk.js": "/contacthub/static/js/923.e2a1c7a7.chunk.js",
+    "static/js/296.7d0b4a26.chunk.js": "/contacthub/static/js/296.7d0b4a26.chunk.js",
+    "static/js/117.ccccc753.chunk.js": "/contacthub/static/js/117.ccccc753.chunk.js",
+    "static/js/774.33aca83f.chunk.js": "/contacthub/static/js/774.33aca83f.chunk.js",
+    "static/js/442.29896801.chunk.js": "/contacthub/static/js/442.29896801.chunk.js",
+    "index.html": "/contacthub/index.html",
+    "main.30578a51.css.map": "/contacthub/static/css/main.30578a51.css.map",
+    "main.4173b7df.js.map": "/contacthub/static/js/main.4173b7df.js.map",
+    "886.e15f6429.chunk.js.map": "/contacthub/static/js/886.e15f6429.chunk.js.map",
+    "923.e2a1c7a7.chunk.js.map": "/contacthub/static/js/923.e2a1c7a7.chunk.js.map",
+    "296.7d0b4a26.chunk.js.map": "/contacthub/static/js/296.7d0b4a26.chunk.js.map",
+    "117.ccccc753.chunk.js.map": "/contacthub/static/js/117.ccccc753.chunk.js.map",
+    "774.33aca83f.chunk.js.map": "/contacthub/static/js/774.33aca83f.chunk.js.map",
+    "442.29896801.chunk.js.map": "/contacthub/static/js/442.29896801.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30578a51.css",
+    "static/js/main.4173b7df.js"
+  ]
+}
