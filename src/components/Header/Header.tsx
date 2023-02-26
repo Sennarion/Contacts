@@ -3,7 +3,7 @@ import { logout } from 'redux/auth/operations';
 import { Button, Typography, Container, Box, Stack } from '@mui/material';
 import Filter from 'components/Filter/Filter';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import ContactPhoneRoundedIcon from '@mui/icons-material/ContactPhoneRounded';
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -11,16 +11,16 @@ const Header: React.FC = () => {
   const user = useAppSelector(state => state.auth.user);
 
   return (
-    <Box component="header" pt={4} pb={4} bgcolor="#91b7f2">
+    <Box component="header" pt={4} pb={4} boxShadow={1}>
       <Container>
         <Stack
-          direction="row"
+          direction={{ sm: 'row' }}
           alignItems="center"
           justifyContent="space-between"
         >
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <RecentActorsIcon fontSize="large" />
-            <Typography component="h1" variant="h6">
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <ContactPhoneRoundedIcon fontSize="large" color="primary" />
+            <Typography component="h1" variant="h6" color="primary">
               ContactsHub
             </Typography>
           </Stack>

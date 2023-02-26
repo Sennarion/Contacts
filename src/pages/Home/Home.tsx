@@ -12,6 +12,8 @@ import {
 } from 'redux/global/slice';
 import { Container, Box, Dialog, Button } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +30,9 @@ const Home: React.FC = () => {
     state => state.global.isUpdateContactModalOpen
   );
 
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
@@ -38,19 +43,21 @@ const Home: React.FC = () => {
       <Box component="main" pt={4} pb={4}>
         <Container>
           <Dialog
+            fullScreen={fullScreen}
             open={isAddContactModalOpen}
             onClose={() => dispatch(toggleAddContactModal())}
           >
             <AddContactForm />
           </Dialog>
           <Dialog
+            fullScreen={fullScreen}
             open={isUpdateContactModalOpen}
             onClose={() => dispatch(toggleUpdateContactModal())}
           >
             <UpdateContactForm />
           </Dialog>
           <ContactsList />
-          <Box position="absolute" bottom="40px" right="40px">
+          <Box position="fixed" bottom="40px" right="40px">
             <Button
               type="button"
               variant="contained"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { updateContact } from 'redux/contacts/operations';
 import { toggleUpdateContactModal } from 'redux/global/slice';
@@ -16,6 +16,14 @@ const UpdateContactForm: React.FC = () => {
 
   const [updatedContact, setUpdatedContact] =
     useState<IContact>(contactToUpdate);
+
+  const input = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (input.current) {
+      input.current.focus();
+    }
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUpdatedContact({
@@ -37,54 +45,61 @@ const UpdateContactForm: React.FC = () => {
   };
 
   return (
-    <Box p={6}>
-      <Typography component="h2" variant="h5" align="center" mb={2}>
-        Update contact
-      </Typography>
-      <form onSubmit={onSubmit}>
-        <Stack spacing={2} minWidth="350px">
-          <TextField
-            type="text"
-            name="name"
-            label="Change Name"
-            variant="outlined"
-            size="small"
-            fullWidth
-            value={updatedContact.name}
-            onChange={onChange}
-            required
-            autoFocus
-          />
-          <TextField
-            type="tel"
-            name="number"
-            label="Change Number"
-            variant="outlined"
-            size="small"
-            fullWidth
-            value={updatedContact.number}
-            onChange={onChange}
-            required
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={isLoading}
-          >
-            Change
-          </Button>
-          <Button
-            type="button"
-            variant="outlined"
-            fullWidth
-            onClick={() => dispatch(toggleUpdateContactModal())}
-          >
-            Cancel
-          </Button>
-        </Stack>
-      </form>
+    <Box
+      height="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box p={6} width={{ xs: 340, sm: 400 }}>
+        <Typography component="h2" variant="h5" align="center" mb={2}>
+          Update contact
+        </Typography>
+        <form onSubmit={onSubmit}>
+          <Stack spacing={2}>
+            <TextField
+              type="text"
+              name="name"
+              label="Change Name"
+              variant="outlined"
+              size="small"
+              fullWidth
+              value={updatedContact.name}
+              onChange={onChange}
+              required
+              inputRef={input}
+            />
+            <TextField
+              type="tel"
+              name="number"
+              label="Change Number"
+              variant="outlined"
+              size="small"
+              fullWidth
+              value={updatedContact.number}
+              onChange={onChange}
+              required
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              disabled={isLoading}
+            >
+              Change
+            </Button>
+            <Button
+              type="button"
+              variant="outlined"
+              fullWidth
+              onClick={() => dispatch(toggleUpdateContactModal())}
+            >
+              Cancel
+            </Button>
+          </Stack>
+        </form>
+      </Box>
     </Box>
   );
 };

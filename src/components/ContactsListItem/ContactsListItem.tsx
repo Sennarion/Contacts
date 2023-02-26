@@ -7,6 +7,7 @@ import {
   Button,
   ButtonGroup,
   Typography,
+  Stack,
   Grid,
   Card,
   CardContent,
@@ -14,6 +15,8 @@ import {
 } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ChangeCircleRoundedIcon from '@mui/icons-material/ChangeCircleRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import PhoneAndroidRoundedIcon from '@mui/icons-material/PhoneAndroidRounded';
 
 const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
   const dispatch = useAppDispatch();
@@ -29,8 +32,20 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
     <Grid item component="li" xs={12} sm={6} md={4} lg={3}>
       <Card variant="outlined">
         <CardContent>
-          <Typography>Name: {name}</Typography>
-          <Typography>Number: {number}</Typography>
+          <Stack spacing={2}>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <AccountCircleRoundedIcon fontSize="large" />
+              <Typography component="p" variant="h6">
+                {name}
+              </Typography>
+            </Stack>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <PhoneAndroidRoundedIcon fontSize="large" />
+              <Typography component="p" variant="h6">
+                {number}
+              </Typography>
+            </Stack>
+          </Stack>
         </CardContent>
         <CardActions>
           <ButtonGroup color="primary" fullWidth>

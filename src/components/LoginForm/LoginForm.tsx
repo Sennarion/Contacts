@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <Stack spacing={2} minWidth="350px">
+      <Stack spacing={2}>
         <TextField
           type="email"
           name="email"

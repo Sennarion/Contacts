@@ -19,9 +19,14 @@ const Register: React.FC = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      bgcolor="#91b7f2"
     >
-      <Stack padding={4} bgcolor="#fff" borderRadius={2} spacing={2}>
+      <Stack
+        p={4}
+        borderRadius={2}
+        spacing={2}
+        boxShadow={{ sm: 2 }}
+        width={{ xs: 340, sm: 400 }}
+      >
         <Stack spacing={2} alignItems="center">
           <PersonAddRoundedIcon
             color="primary"
