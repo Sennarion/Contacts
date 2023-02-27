@@ -90,7 +90,6 @@ const UpdateContactForm: React.FC = () => {
               Change
             </Button>
             <Button
-              type="button"
               variant="outlined"
               fullWidth
               onClick={() => dispatch(toggleUpdateContactModal())}

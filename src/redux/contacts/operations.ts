@@ -14,9 +14,9 @@ export const getContacts = createAsyncThunk(
   }
 );
 
-export const createContact = createAsyncThunk(
+export const createContact = createAsyncThunk<any, INewContact>(
   'contacts/createContact',
-  async (newContact: INewContact, { rejectWithValue }) => {
+  async (newContact, { rejectWithValue }) => {
     try {
       const res = await axios.post('/contacts', newContact);
       return res.data;
@@ -26,9 +26,9 @@ export const createContact = createAsyncThunk(
   }
 );
 
-export const deleteContact = createAsyncThunk(
+export const deleteContact = createAsyncThunk<any, string>(
   'contacts/deleteContact',
-  async (contactId: string, { rejectWithValue }) => {
+  async (contactId, { rejectWithValue }) => {
     try {
       const res = await axios.delete(`/contacts/${contactId}`);
       return res.data;
@@ -38,9 +38,9 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const updateContact = createAsyncThunk(
+export const updateContact = createAsyncThunk<any, IContact>(
   'contacts/updateContact',
-  async ({ id, name, number }: IContact, { rejectWithValue }) => {
+  async ({ id, name, number }, { rejectWithValue }) => {
     try {
       const res = await axios.patch(`/contacts/${id}`, { name, number });
       return res.data;

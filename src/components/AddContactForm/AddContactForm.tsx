@@ -88,7 +88,6 @@ const AddContactForm: React.FC = () => {
               Create
             </Button>
             <Button
-              type="button"
               variant="outlined"
               fullWidth
               onClick={() => dispatch(toggleAddContactModal())}

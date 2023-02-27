@@ -1,6 +1,7 @@
 import { useAppSelector } from 'hooks';
 import ContactsListItem from 'components/ContactsListItem/ContactsListItem';
 import { Grid, Box } from '@mui/material';
+import Filter from 'components/Filter/Filter';
 
 const ContactsList: React.FC = () => {
   const contacts = useAppSelector(state => state.contacts.items);
@@ -15,6 +16,7 @@ const ContactsList: React.FC = () => {
 
   return (
     <Box component="main">
+      <Filter />
       <Grid container component="ul" spacing={4}>
         {filteredContacts.map(({ id, name, number }) => {
           return (

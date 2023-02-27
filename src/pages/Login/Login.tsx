@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import LoginForm from 'components/LoginForm/LoginForm';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -13,15 +13,23 @@ import {
   AlertTitle,
 } from '@mui/material';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import { clearError } from 'redux/auth/slice';
 
 const Login: React.FC = () => {
   const [isSnackBarOpen, setIsSnackBarOpen] = useState(true);
 
+  const dispatch = useAppDispatch();
+
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const errorStatus = useAppSelector(state => state.auth.error);
 
   if (isLoggedIn) {
     return <Navigate to="/contacts" replace />;
   }
+
+  const clearErrorStatus = () => {
+    dispatch(clearError());
+  };
 
   return (
     <Box
@@ -39,10 +47,7 @@ const Login: React.FC = () => {
         width={{ xs: 340, sm: 400 }}
       >
         <Stack spacing={2} alignItems="center">
-          <PersonRoundedIcon
-            color="primary"
-            sx={{ width: '80px', height: '80px' }}
-          />
+          <PersonRoundedIcon color="primary" sx={{ fontSize: 80 }} />
           <Typography component="h1" variant="h5">
             Sign In
           </Typography>
@@ -72,6 +77,16 @@ const Login: React.FC = () => {
           </p>
           <p>Email: testaccount@mail.com</p>
           <p>Password: testtest12</p>
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={errorStatus !== null}
+        autoHideDuration={3000}
+        onClose={clearErrorStatus}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert onClose={clearErrorStatus} severity="error">
+          {errorStatus as string}
         </Alert>
       </Snackbar>
     </Box>

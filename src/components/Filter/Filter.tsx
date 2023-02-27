@@ -8,7 +8,7 @@ const Filter: React.FC = () => {
   const filter = useAppSelector(state => state.contacts.filter);
 
   return (
-    <Box>
+    <Box mb={2}>
       <TextField
         type="text"
         label="Find contacts by name"

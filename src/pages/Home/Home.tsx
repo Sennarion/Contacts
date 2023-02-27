@@ -59,7 +59,6 @@ const Home: React.FC = () => {
           <ContactsList />
           <Box position="fixed" bottom="40px" right="40px">
             <Button
-              type="button"
               variant="contained"
               color="primary"
               startIcon={<AddCircleRoundedIcon />}

@@ -14,22 +14,22 @@ const token = {
   },
 };
 
-export const register = createAsyncThunk(
+export const register = createAsyncThunk<any, IRegisterCredentials>(
   'auth/register',
-  async (credentials: IRegisterCredentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
       return data;
     } catch {
-      return rejectWithValue('Failed to register. Username already exists');
+      return rejectWithValue('Failed to register. The email already exists');
     }
   }
 );
 
-export const login = createAsyncThunk(
+export const login = createAsyncThunk<any, ILoginCredentials>(
   'auth/login',
-  async (credentials: ILoginCredentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);
@@ -68,7 +68,7 @@ export const refreshUser = createAsyncThunk(
       const { data } = await axios.get('/users/current');
       return data;
     } catch {
-      return rejectWithValue('Failed to get user');
+      return rejectWithValue('Failed to restore session');
     }
   }
 );

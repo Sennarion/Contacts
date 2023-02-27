@@ -50,7 +50,6 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
         <CardActions>
           <ButtonGroup color="primary" fullWidth>
             <Button
-              type="button"
               variant="contained"
               disableElevation
               startIcon={<ChangeCircleRoundedIcon />}
@@ -59,7 +58,6 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
               Change
             </Button>
             <Button
-              type="button"
               variant="outlined"
               disabled={isLoading}
               startIcon={<DeleteRoundedIcon />}

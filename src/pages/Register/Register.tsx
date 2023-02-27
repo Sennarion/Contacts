@@ -1,12 +1,20 @@
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography, Box, Stack } from '@mui/material';
+import { Link, Typography, Box, Stack, Alert, Snackbar } from '@mui/material';
 import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
+import { clearError } from 'redux/auth/slice';
 
 const Register: React.FC = () => {
+  const dispatch = useAppDispatch();
+
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const errorStatus = useAppSelector(state => state.auth.error);
+
+  const clearErrorStatus = () => {
+    dispatch(clearError());
+  };
 
   if (isLoggedIn) {
     return <Navigate to="/contacts" replace />;
@@ -28,10 +36,7 @@ const Register: React.FC = () => {
         width={{ xs: 340, sm: 400 }}
       >
         <Stack spacing={2} alignItems="center">
-          <PersonAddRoundedIcon
-            color="primary"
-            sx={{ width: '80px', height: '80px' }}
-          />
+          <PersonAddRoundedIcon color="primary" sx={{ fontSize: 80 }} />
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
@@ -48,6 +53,16 @@ const Register: React.FC = () => {
           </Typography>
         </Stack>
       </Stack>
+      <Snackbar
+        open={errorStatus !== null}
+        autoHideDuration={3000}
+        onClose={clearErrorStatus}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert onClose={clearErrorStatus} severity="error">
+          {errorStatus as string}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
