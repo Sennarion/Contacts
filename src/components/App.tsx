@@ -2,7 +2,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { refreshUser } from 'redux/auth/operations';
-import Loader from './Loader/Loader';
+import { Loader } from 'components';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));

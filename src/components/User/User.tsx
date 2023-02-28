@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { logout } from 'redux/auth/operations';
 import { Stack, IconButton, Button, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { logout } from 'redux/auth/operations';
 
 const User: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,11 @@ const User: React.FC = () => {
     <Stack direction="row" alignItems="center" spacing={2}>
       {!isMobile && <Typography>{user.name}</Typography>}
       {isMobile ? (
-        <IconButton aria-label="logout" color="primary">
+        <IconButton
+          aria-label="logout"
+          color="primary"
+          onClick={() => dispatch(logout())}
+        >
           <LogoutRoundedIcon />
         </IconButton>
       ) : (

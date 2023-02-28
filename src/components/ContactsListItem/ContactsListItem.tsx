@@ -35,7 +35,7 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
           <Stack spacing={2}>
             <Stack direction="row" alignItems="center" spacing={2}>
               <AccountCircleRoundedIcon fontSize="large" />
-              <Typography component="p" variant="h6">
+              <Typography component="p" variant="h6" noWrap>
                 {name}
               </Typography>
             </Stack>
@@ -59,6 +59,7 @@ const ContactsListItem: React.FC<IContact> = ({ id, name, number }) => {
             </Button>
             <Button
               variant="outlined"
+              color="error"
               disabled={isLoading}
               startIcon={<DeleteRoundedIcon />}
               onClick={() => dispatch(deleteContact(id))}

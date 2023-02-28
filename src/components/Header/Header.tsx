@@ -1,10 +1,14 @@
 import { Container, Box, Stack } from '@mui/material';
-import User from 'components/User/User';
-import Logo from 'components/Logo/Logo';
+import { User, Logo } from 'components';
 
 const Header: React.FC = () => {
   return (
-    <Box component="header" pt={4} pb={4} boxShadow={1}>
+    <Box
+      component="header"
+      pt={{ xs: 1, md: 3 }}
+      pb={{ xs: 1, md: 3 }}
+      boxShadow={1}
+    >
       <Container>
         <Stack
           direction="row"

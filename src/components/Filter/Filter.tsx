@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { setFilter } from 'redux/contacts/slice';
-import { TextField, Box } from '@mui/material';
+import { TextField } from '@mui/material';
 
 const Filter: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -8,17 +8,15 @@ const Filter: React.FC = () => {
   const filter = useAppSelector(state => state.contacts.filter);
 
   return (
-    <Box mb={2}>
-      <TextField
-        type="text"
-        label="Find contacts by name"
-        variant="outlined"
-        size="small"
-        fullWidth
-        value={filter}
-        onChange={e => dispatch(setFilter(e.target.value))}
-      />
-    </Box>
+    <TextField
+      type="text"
+      label="Find contacts by name"
+      variant="outlined"
+      size="small"
+      fullWidth
+      value={filter}
+      onChange={e => dispatch(setFilter(e.target.value))}
+    />
   );
 };
 

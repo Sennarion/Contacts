@@ -3,7 +3,15 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { updateContact } from 'redux/contacts/operations';
 import { toggleUpdateContactModal } from 'redux/global/slice';
 import { IContact } from 'types/types';
-import { Box, Button, TextField, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  TextField,
+  Stack,
+  Typography,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 
 const UpdateContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +24,7 @@ const UpdateContactForm: React.FC = () => {
 
   const [updatedContact, setUpdatedContact] =
     useState<IContact>(contactToUpdate);
+  const [isModalError, setIsModalError] = useState(false);
 
   const input = useRef<HTMLInputElement>(null);
 
@@ -36,7 +45,7 @@ const UpdateContactForm: React.FC = () => {
     e.preventDefault();
 
     if (contacts.some(contact => contact.name === updatedContact.name)) {
-      alert('Error');
+      setIsModalError(true);
       return;
     }
 
@@ -98,6 +107,16 @@ const UpdateContactForm: React.FC = () => {
             </Button>
           </Stack>
         </form>
+        <Snackbar
+          open={isModalError}
+          autoHideDuration={3000}
+          onClose={() => setIsModalError(false)}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <Alert severity="error" onClose={() => setIsModalError(false)}>
+            A contact with this name already exists
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );

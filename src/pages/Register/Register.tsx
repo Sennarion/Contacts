@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography, Box, Stack, Alert, Snackbar } from '@mui/material';
+import { Link, Typography, Stack, Alert, Snackbar } from '@mui/material';
 import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
 import { clearError } from 'redux/auth/slice';
+import { RegisterForm, Background } from 'components';
 
 const Register: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,19 +21,14 @@ const Register: React.FC = () => {
   }
 
   return (
-    <Box
-      minHeight="100vh"
-      minWidth="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Background>
       <Stack
         p={4}
         borderRadius={2}
         spacing={2}
         boxShadow={{ sm: 2 }}
         width={{ xs: 340, sm: 400 }}
+        bgcolor="#fff"
       >
         <Stack spacing={2} alignItems="center">
           <PersonAddRoundedIcon color="primary" sx={{ fontSize: 80 }} />
@@ -63,7 +58,7 @@ const Register: React.FC = () => {
           {errorStatus as string}
         </Alert>
       </Snackbar>
-    </Box>
+    </Background>
   );
 };
 

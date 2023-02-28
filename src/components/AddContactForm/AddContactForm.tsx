@@ -3,7 +3,15 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { createContact } from 'redux/contacts/operations';
 import { toggleAddContactModal } from 'redux/global/slice';
 import { INewContact } from 'types/types';
-import { Box, Button, TextField, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  TextField,
+  Stack,
+  Typography,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 
 const AddContactForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +23,7 @@ const AddContactForm: React.FC = () => {
     name: '',
     number: '',
   });
+  const [isModalError, setIsModalError] = useState(false);
 
   const input = useRef<HTMLInputElement>(null);
 
@@ -34,7 +43,7 @@ const AddContactForm: React.FC = () => {
     e.preventDefault();
 
     if (contacts.some(prevContact => prevContact.name === contact.name)) {
-      alert('Error');
+      setIsModalError(true);
       return;
     }
 
@@ -96,6 +105,16 @@ const AddContactForm: React.FC = () => {
             </Button>
           </Stack>
         </form>
+        <Snackbar
+          open={isModalError}
+          autoHideDuration={3000}
+          onClose={() => setIsModalError(false)}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <Alert severity="error" onClose={() => setIsModalError(false)}>
+            A contact with this name already exists
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );

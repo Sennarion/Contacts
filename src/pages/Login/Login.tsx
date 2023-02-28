@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import LoginForm from 'components/LoginForm/LoginForm';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Link,
   Typography,
-  Box,
   Stack,
   Snackbar,
   Alert,
@@ -14,6 +12,7 @@ import {
 } from '@mui/material';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import { clearError } from 'redux/auth/slice';
+import { LoginForm, Background } from 'components';
 
 const Login: React.FC = () => {
   const [isSnackBarOpen, setIsSnackBarOpen] = useState(true);
@@ -32,19 +31,14 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Box
-      minHeight="100vh"
-      minWidth="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Background>
       <Stack
         p={4}
         borderRadius={2}
         spacing={2}
         boxShadow={{ sm: 2 }}
         width={{ xs: 340, sm: 400 }}
+        bgcolor="#fff"
       >
         <Stack spacing={2} alignItems="center">
           <PersonRoundedIcon color="primary" sx={{ fontSize: 80 }} />
@@ -89,7 +83,7 @@ const Login: React.FC = () => {
           {errorStatus as string}
         </Alert>
       </Snackbar>
-    </Box>
+    </Background>
   );
 };
 

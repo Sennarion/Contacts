@@ -37,6 +37,7 @@ const RegisterForm: React.FC = () => {
           value={user.name}
           onChange={onChange}
           required
+          autoComplete="off"
         />
         <TextField
           type="email"
@@ -48,6 +49,7 @@ const RegisterForm: React.FC = () => {
           value={user.email}
           onChange={onChange}
           required
+          autoComplete="off"
         />
         <TextField
           type="password"

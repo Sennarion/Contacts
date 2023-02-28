@@ -36,6 +36,7 @@ const LoginForm: React.FC = () => {
           value={user.email}
           onChange={onChange}
           required
+          autoComplete="off"
         />
         <TextField
           type="password"
@@ -47,6 +48,7 @@ const LoginForm: React.FC = () => {
           value={user.password}
           onChange={onChange}
           required
+          autoComplete="off"
         />
         <Button type="submit" variant="contained" color="primary" fullWidth>
           Sign in
