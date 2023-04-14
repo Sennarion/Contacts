@@ -6,10 +6,10 @@ import { ILoginCredentials, IRegisterCredentials } from 'types/types';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
-  set(token: string) {
+  set(token: string): void {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
-  unset() {
+  unset(): void {
     axios.defaults.headers.common.Authorization = ``;
   },
 };
