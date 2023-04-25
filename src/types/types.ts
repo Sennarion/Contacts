@@ -3,10 +3,8 @@ export interface ILoginCredentials {
   password: string;
 }
 
-export interface IRegisterCredentials {
+export interface IRegisterCredentials extends ILoginCredentials {
   name: string;
-  email: string;
-  password: string;
 }
 
 export interface INewContact {
@@ -14,10 +12,8 @@ export interface INewContact {
   number: string;
 }
 
-export interface IContact {
+export interface IContact extends INewContact {
   id: string;
-  name: string;
-  number: string;
 }
 
 export interface IUser {
@@ -33,9 +29,9 @@ export interface GlobalState {
 export interface ContactsState {
   items: IContact[];
   isLoading: boolean;
-  error: unknown;
   filter: string;
   contactToUpdate: IContact;
+  error: unknown;
 }
 
 export interface AuthState {

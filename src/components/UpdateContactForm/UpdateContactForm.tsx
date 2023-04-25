@@ -24,7 +24,7 @@ const UpdateContactForm: React.FC = () => {
 
   const [updatedContact, setUpdatedContact] =
     useState<IContact>(contactToUpdate);
-  const [isModalError, setIsModalError] = useState(false);
+  const [isModalError, setIsModalError] = useState<boolean>(false);
 
   const input = useRef<HTMLInputElement>(null);
 

@@ -23,7 +23,7 @@ const AddContactForm: React.FC = () => {
     name: '',
     number: '',
   });
-  const [isModalError, setIsModalError] = useState(false);
+  const [isModalError, setIsModalError] = useState<boolean>(false);
 
   const input = useRef<HTMLInputElement>(null);
 
