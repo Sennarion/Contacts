@@ -84,7 +84,7 @@ const contactsSlice = createSlice({
         ),
         (state, { payload }) => {
           state.isLoading = false;
-          state.error = payload;
+          if (payload !== undefined) state.error = payload;
         }
       ),
 });

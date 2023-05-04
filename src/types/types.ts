@@ -31,7 +31,7 @@ export interface ContactsState {
   isLoading: boolean;
   filter: string;
   contactToUpdate: IContact;
-  error: unknown;
+  error: null | string;
 }
 
 export interface AuthState {
@@ -39,10 +39,14 @@ export interface AuthState {
   token: null | string;
   isLoggedIn: boolean;
   isRefreshing: boolean;
-  error: unknown;
+  error: null | string;
 }
 
 export interface AuthResponse {
   user: IUser;
   token: string;
+}
+
+export interface ErrorResponse {
+  message: string;
 }

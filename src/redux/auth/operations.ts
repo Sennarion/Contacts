@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
 import {
   ILoginCredentials,
   IRegisterCredentials,
   AuthResponse,
   IUser,
+  AuthState,
 } from 'types/types';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -47,25 +47,25 @@ export const login = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<any, undefined, { rejectValue: string }>(
-  'auth/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/users/logout');
-      token.unset();
-      return data;
-    } catch {
-      return rejectWithValue('Failed to logout');
-    }
+export const logout = createAsyncThunk<
+  void,
+  undefined,
+  { rejectValue: string }
+>('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    await axios.post('/users/logout');
+    token.unset();
+  } catch {
+    return rejectWithValue('Failed to logout');
   }
-);
+});
 
 export const refreshUser = createAsyncThunk<
   IUser,
   undefined,
-  { rejectValue: string | null }
+  { rejectValue: string | null; state: { auth: AuthState } }
 >('auth/refresh', async (_, { getState, rejectWithValue }) => {
-  const state = getState() as RootState;
+  const state = getState();
   const persistedToken = state.auth.token;
 
   if (persistedToken === null) {

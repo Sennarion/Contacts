@@ -39,7 +39,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state, { payload }) => {
         state.isRefreshing = false;
-        state.error = payload;
+        if (payload !== undefined) state.error = payload;
       })
       .addCase(logout.fulfilled, state => {
         state.user = initialState.user;
@@ -59,7 +59,7 @@ const authSlice = createSlice({
       .addMatcher(
         isAnyOf(register.rejected, login.rejected, logout.rejected),
         (state, { payload }) => {
-          state.error = payload;
+          if (payload !== undefined) state.error = payload;
         }
       ),
 });
