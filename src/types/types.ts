@@ -41,3 +41,8 @@ export interface AuthState {
   isRefreshing: boolean;
   error: unknown;
 }
+
+export interface AuthResponse {
+  user: IUser;
+  token: string;
+}

@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from 'redux/store';
-import { ILoginCredentials, IRegisterCredentials } from 'types/types';
+import {
+  ILoginCredentials,
+  IRegisterCredentials,
+  AuthResponse,
+  IUser,
+} from 'types/types';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -14,33 +19,35 @@ const token = {
   },
 };
 
-export const register = createAsyncThunk<any, IRegisterCredentials>(
-  'auth/register',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/users/signup', credentials);
-      token.set(data.token);
-      return data;
-    } catch {
-      return rejectWithValue('Failed to register. The email already exists');
-    }
+export const register = createAsyncThunk<
+  AuthResponse,
+  IRegisterCredentials,
+  { rejectValue: string }
+>('auth/register', async (credentials, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post('/users/signup', credentials);
+    token.set(data.token);
+    return data;
+  } catch {
+    return rejectWithValue('Failed to register. The email already exists');
   }
-);
+});
 
-export const login = createAsyncThunk<any, ILoginCredentials>(
-  'auth/login',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/users/login', credentials);
-      token.set(data.token);
-      return data;
-    } catch {
-      return rejectWithValue('Failed to login. Incorrect email or password');
-    }
+export const login = createAsyncThunk<
+  AuthResponse,
+  ILoginCredentials,
+  { rejectValue: string }
+>('auth/login', async (credentials, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.post('/users/login', credentials);
+    token.set(data.token);
+    return data;
+  } catch {
+    return rejectWithValue('Failed to login. Incorrect email or password');
   }
-);
+});
 
-export const logout = createAsyncThunk(
+export const logout = createAsyncThunk<any, undefined, { rejectValue: string }>(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
@@ -53,22 +60,23 @@ export const logout = createAsyncThunk(
   }
 );
 
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState() as RootState;
-    const persistedToken = state.auth.token;
+export const refreshUser = createAsyncThunk<
+  IUser,
+  undefined,
+  { rejectValue: string | null }
+>('auth/refresh', async (_, { getState, rejectWithValue }) => {
+  const state = getState() as RootState;
+  const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
-      return rejectWithValue(null);
-    }
-
-    try {
-      token.set(persistedToken);
-      const { data } = await axios.get('/users/current');
-      return data;
-    } catch {
-      return rejectWithValue('Failed to restore session');
-    }
+  if (persistedToken === null) {
+    return rejectWithValue(null);
   }
-);
+
+  try {
+    token.set(persistedToken);
+    const { data } = await axios.get('/users/current');
+    return data;
+  } catch {
+    return rejectWithValue('Failed to restore session');
+  }
+});
