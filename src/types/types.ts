@@ -46,7 +46,3 @@ export interface AuthResponse {
   user: IUser;
   token: string;
 }
-
-export interface ErrorResponse {
-  message: string;
-}
